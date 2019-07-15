@@ -1,0 +1,11 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX4
+Size               32M
+Start Address      0x00000000
+End Address        0x01FFFFFF
+
+Addr1         Addr2         Date                    File(s)
+0x00000000    0x003BE87B    Jul 15 11:25:40 2019    /media/2TB/workspace/rsarwar/work/TE1001_160/refdesign/test_board_noprebuilt/vivado/test_board_noprebuilt.runs/impl_1/msys_wrapper.bit

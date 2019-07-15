@@ -1,0 +1,15 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX4
+Size               32M
+Start Address      0x00000000
+End Address        0x01FFFFFF
+Checksum           0xC7941131
+Fill Value         0xFF
+
+Addr1         Addr2         Date                    File(s)                                                   Checksum
+0x00000000    0x003BE8F6    Jul 15 11:25:40 2019    ../prebuilt/hardware/1_160_2/test_board_noprebuilt.bit    0x0576D348
+0x005E0000    0x005E43AB    Jul 15 11:44:31 2019    ../prebuilt/software/1_160_2/hello_tef1001.srec           0x000DB446
+File Checksum Total                                                                                           0x0584878E
