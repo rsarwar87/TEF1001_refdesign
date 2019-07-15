@@ -545,12 +545,17 @@ proc create_root_design { parentCell } {
 }
 # End of create_root_design()
 
+group_bd_cells ddr_ram [get_bd_cells mig_7series_0] [get_bd_cells const_high] [get_bd_cells axi_interconnect_ddr] [get_bd_cells rst_axi_pcie_0_62M]
+group_bd_cells microblaze [get_bd_cells mdm_1] [get_bd_cells microblaze_0_axi_intc] [get_bd_cells microblaze_0_xlconcat] [get_bd_cells microblaze_0] [get_bd_cells microblaze_0_local_memory] [get_bd_cells microblaze_0_axi_periph] [get_bd_cells rst_clk_wiz_0_50M]
+group_bd_cells debug [get_bd_cells util_ds_buf_0] [get_bd_cells xlconcat_0] [get_bd_cells vio_0] [get_bd_cells labtools_fmeter_0] [get_bd_cells util_ds_buf_1]
+group_bd_cells pcie [get_bd_cells util_ds_buf_2] [get_bd_cells axi_pcie_0] [get_bd_cells xlconstant_high_pcie] [get_bd_cells rst_mig_7series_0_125M]
+group_bd_cells i2c [get_bd_cells axi_iic_0] [get_bd_cells SCF1001_0]
+
 
 ##################################################################
 # MAIN FLOW
 ##################################################################
 
 create_root_design ""
-
 
 
