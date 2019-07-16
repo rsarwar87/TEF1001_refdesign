@@ -62,7 +62,7 @@ JTAG/UART Console:
 
     Launch the XSDB console on SDK (Xilinx → XSCT Console):
     
-              type: connect TCP:10.211.3.16:3121
+              type: connect -url TCP:10.211.3.16:3121
               
               type: targets -set -filter {name =~ "MicroBlaze Debug*"} -index 0
               
