@@ -8,5 +8,5 @@
 3. run vivado
 4. vivado, run TCL: source ../TeF1001i\_xDMA.tcl
 
-##Note
+## Note
 * RAM is at the memoment incorrectly configured. 
