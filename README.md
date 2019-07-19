@@ -10,3 +10,6 @@
 
 ## Note
 * RAM is at the memoment incorrectly configured. 
+* XDMA was configured in memory-mapped mode to read the SDRAM
+* The XDMA Bar0 is configured to access the QSPI, IIC, block ram, etc.
+* also contains a microblaze to carry prcessing on device
