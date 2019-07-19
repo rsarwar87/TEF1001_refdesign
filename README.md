@@ -1,4 +1,4 @@
-# TEF1001 ref design using XDMA/Bridge Bridge subsystem
+# TEF1001 ref design using XDMA/Bridge PCIe subsystem
 ## Usage
 1. Clone repo: glit clone https://github.com/rsarwar87/TEF1001\_refdesign
   1.a. Change directory: cd TEF1001\_refdesign
