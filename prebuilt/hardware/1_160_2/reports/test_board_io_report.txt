@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date                      : Mon Jul 22 13:22:43 2019
+| Date                      : Mon Jul 22 20:36:53 2019
 | Host                      : ukaea-fpga running 64-bit KDE neon User Edition 5.16
 | Command                   : report_io -force -file /media/2TB/workspace/rsarwar/work/TE1001_160/refdesign/test_board/vivado/test_board.runs/impl_1/test_board_io_report.txt -format text
 | Design                    : msys_wrapper
