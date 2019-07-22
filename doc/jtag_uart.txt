@@ -1,0 +1,8 @@
+https://www.xilinx.com/support/answers/66370.html
+
+
+Launch the XSDB console on SDK:
+
+connect
+targets -set -filter {name =~ "MicroBlaze Debug*"} -index 0
+jtagterminal -start
