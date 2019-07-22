@@ -84,7 +84,7 @@ export ENABLE_SDSOC=0
 # https://github.com/Xilinx/u-boot-xlnx
 # https://github.com/Xilinx/linux-xlnx
 # Set Xilinx GIT Clone Path:
-export XILINXGIT_DEVICETREE=/home/xilinx_git/device-tree-xlnx
+export XILINXGIT_DEVICETREE=/media/2TB/workspace/rsarwar/work/device-tree-xlnx
 # --------------------
 # optional Xilinx Environment variables
 # -- QSPI Uboot debug:

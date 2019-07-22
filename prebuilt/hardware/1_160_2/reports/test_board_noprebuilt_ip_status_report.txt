@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Mon Jul 15 11:26:11 2019
+| Date         : Wed Jul 17 13:52:09 2019
 | Host         : ukaea-fpga running 64-bit KDE neon User Edition 5.16
 | Command      : report_ip_status
 ------------------------------------------------------------------------------------
@@ -10,7 +10,7 @@ IP Status Summary
 
 1. Project IP Status
 --------------------
-Your project uses 28 IP. Some of these IP may have undergone changes in this release of the software. Please review the recommended actions.
+Your project uses 53 IP. Some of these IP may have undergone changes in this release of the software. Please review the recommended actions.
 
 More information on the Xilinx versioning policy is available at www.xilinx.com.
 
@@ -104,29 +104,129 @@ Project IP Instances
 |                                |            |                     |           | Reset              | (Rev.   |               |            |                      |
 |                                |            |                     |           |                    | 13)     |               |            |                      |
 +--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_util_ds_buf_0_0           | Up-to-date | No changes required |  *(21)    | Utility Buffer     | 2.1     | 2.1 (Rev. 12) | Included   | xc7k160tfbg676-2     |
+| msys_system_ila_0_0            | Up-to-date | No changes required |  *(21)    | System ILA         | 1.1     | 1.1 (Rev. 4)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 4)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| msys_system_ila_1_0            | Up-to-date | No changes required |  *(22)    | System ILA         | 1.1     | 1.1 (Rev. 4)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 4)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| msys_system_ila_2_0            | Up-to-date | No changes required |  *(23)    | System ILA         | 1.1     | 1.1 (Rev. 4)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 4)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| msys_system_ila_3_0            | Up-to-date | No changes required |  *(24)    | System ILA         | 1.1     | 1.1 (Rev. 4)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 4)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| msys_util_ds_buf_0_0           | Up-to-date | No changes required |  *(25)    | Utility Buffer     | 2.1     | 2.1 (Rev. 12) | Included   | xc7k160tfbg676-2     |
 |                                |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                |            |                     |           |                    | 12)     |               |            |                      |
 +--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_util_ds_buf_1_0           | Up-to-date | No changes required |  *(22)    | Utility Buffer     | 2.1     | 2.1 (Rev. 12) | Included   | xc7k160tfbg676-2     |
+| msys_util_ds_buf_1_0           | Up-to-date | No changes required |  *(26)    | Utility Buffer     | 2.1     | 2.1 (Rev. 12) | Included   | xc7k160tfbg676-2     |
 |                                |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                |            |                     |           |                    | 12)     |               |            |                      |
 +--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_util_ds_buf_2_0           | Up-to-date | No changes required |  *(23)    | Utility Buffer     | 2.1     | 2.1 (Rev. 12) | Included   | xc7k160tfbg676-2     |
+| msys_util_ds_buf_2_0           | Up-to-date | No changes required |  *(27)    | Utility Buffer     | 2.1     | 2.1 (Rev. 12) | Included   | xc7k160tfbg676-2     |
 |                                |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                |            |                     |           |                    | 12)     |               |            |                      |
 +--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_vio_0_0                   | Up-to-date | No changes required |  *(24)    | VIO (Virtual       | 3.0     | 3.0 (Rev. 19) | Included   | xc7k160tfbg676-2     |
+| msys_vio_0_0                   | Up-to-date | No changes required |  *(28)    | VIO (Virtual       | 3.0     | 3.0 (Rev. 19) | Included   | xc7k160tfbg676-2     |
 |                                |            |                     |           | Input/Output)      | (Rev.   |               |            |                      |
 |                                |            |                     |           |                    | 19)     |               |            |                      |
 +--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_xlconcat_0_0              | Up-to-date | No changes required |  *(25)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+| msys_xlconcat_0_0              | Up-to-date | No changes required |  *(29)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
 |                                |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                |            |                     |           |                    | 1)      |               |            |                      |
 +--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_xlconstant_high_pcie_0    | Up-to-date | No changes required |  *(26)    | Constant           | 1.1     | 1.1 (Rev. 5)  | Included   | xc7k160tfbg676-2     |
+| msys_xlconstant_high_pcie_0    | Up-to-date | No changes required |  *(30)    | Constant           | 1.1     | 1.1 (Rev. 5)  | Included   | xc7k160tfbg676-2     |
 |                                |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                |            |                     |           |                    | 5)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_g_inst_0               | Up-to-date | No changes required | Change    | Gigantic mux       | 1.0     | 1.0 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     | Log not   |                    | (Rev.   |               |            |                      |
+|                                |            |                     | available |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_ila_lib_0              | Up-to-date | No changes required |  *(31)    | ILA (Integrated    | 6.2     | 6.2 (Rev. 8)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           | Logic Analyzer)    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 8)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_0_ar_0            | Up-to-date | No changes required |  *(32)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_0_aw_0            | Up-to-date | No changes required |  *(33)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_0_b_0             | Up-to-date | No changes required |  *(34)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_0_r_0             | Up-to-date | No changes required |  *(35)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_0_w_0             | Up-to-date | No changes required |  *(36)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_1_ar_0            | Up-to-date | No changes required |  *(37)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_1_aw_0            | Up-to-date | No changes required |  *(38)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_1_b_0             | Up-to-date | No changes required |  *(39)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_1_r_0             | Up-to-date | No changes required |  *(40)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_4339_slot_1_w_0             | Up-to-date | No changes required |  *(41)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_43c9_ila_lib_0              | Up-to-date | No changes required |  *(42)    | ILA (Integrated    | 6.2     | 6.2 (Rev. 8)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           | Logic Analyzer)    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 8)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8368_g_inst_0               | Up-to-date | No changes required | Change    | Gigantic mux       | 1.0     | 1.0 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     | Log not   |                    | (Rev.   |               |            |                      |
+|                                |            |                     | available |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8368_ila_lib_0              | Up-to-date | No changes required |  *(43)    | ILA (Integrated    | 6.2     | 6.2 (Rev. 8)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           | Logic Analyzer)    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 8)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8368_slot_0_ar_0            | Up-to-date | No changes required |  *(44)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8368_slot_0_aw_0            | Up-to-date | No changes required |  *(45)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8368_slot_0_b_0             | Up-to-date | No changes required |  *(46)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8368_slot_0_r_0             | Up-to-date | No changes required |  *(47)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8368_slot_0_w_0             | Up-to-date | No changes required |  *(48)    | Concat             | 2.1     | 2.1 (Rev. 1)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           |                    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 1)      |               |            |                      |
++--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| bd_8398_ila_lib_0              | Up-to-date | No changes required |  *(49)    | ILA (Integrated    | 6.2     | 6.2 (Rev. 8)  | Included   | xc7k160tfbg676-2     |
+|                                |            |                     |           | Logic Analyzer)    | (Rev.   |               |            |                      |
+|                                |            |                     |           |                    | 8)      |               |            |                      |
 +--------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
 *(1) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/axi_iic_v2_0/doc/axi_iic_v2_0_changelog.txt
 *(2) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/axi_interconnect_v2_1/doc/axi_interconnect_v2_1_changelog.txt
@@ -148,11 +248,34 @@ Project IP Instances
 *(18) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
 *(19) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
 *(20) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
-*(21) /opt/Xilinx/Vivado/2018.3/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
-*(22) /opt/Xilinx/Vivado/2018.3/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
-*(23) /opt/Xilinx/Vivado/2018.3/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
-*(24) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/vio_v3_0/doc/vio_v3_0_changelog.txt
-*(25) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
-*(26) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconstant_v1_1/doc/xlconstant_v1_1_changelog.txt
+*(21) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/system_ila_v1_1/doc/system_ila_v1_1_changelog.txt
+*(22) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/system_ila_v1_1/doc/system_ila_v1_1_changelog.txt
+*(23) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/system_ila_v1_1/doc/system_ila_v1_1_changelog.txt
+*(24) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/system_ila_v1_1/doc/system_ila_v1_1_changelog.txt
+*(25) /opt/Xilinx/Vivado/2018.3/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
+*(26) /opt/Xilinx/Vivado/2018.3/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
+*(27) /opt/Xilinx/Vivado/2018.3/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
+*(28) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/vio_v3_0/doc/vio_v3_0_changelog.txt
+*(29) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(30) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconstant_v1_1/doc/xlconstant_v1_1_changelog.txt
+*(31) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/ila_v6_2/doc/ila_v6_2_changelog.txt
+*(32) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(33) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(34) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(35) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(36) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(37) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(38) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(39) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(40) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(41) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(42) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/ila_v6_2/doc/ila_v6_2_changelog.txt
+*(43) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/ila_v6_2/doc/ila_v6_2_changelog.txt
+*(44) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(45) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(46) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(47) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(48) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(49) /opt/Xilinx/Vivado/2018.3/data/ip/xilinx/ila_v6_2/doc/ila_v6_2_changelog.txt
 
 

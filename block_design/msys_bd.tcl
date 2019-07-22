@@ -1,5 +1,4 @@
-catch {TE::UTILS::te_msg TE_BD-0 INFO "This block design tcl-file was generate with Trenz Electronic GmbH Board Part:trenz.biz:tef1001_160_2i:part0:1.1, FPGA: xc7k160tfbg676-2 at 2018-10-23T10:34:23."}
-catch {TE::UTILS::te_msg TE_BD-1 INFO "This block design tcl-file was modified by TE-Scripts. Modifications are labelled with comment tag  # #TE_MOD# on the Block-Design tcl-file."}
+catch {TE::UTILS::te_msg TE_BD-0 INFO "This block design tcl-file was generate with Trenz Electronic GmbH Board Part:trenz.biz:tef1001_160_2i:part0:1.0, FPGA: xc7k160tfbg676-2 at 2019-07-22T15:45:19."}
 
 ################################################################
 # This is a generated script based on design: msys
@@ -22,7 +21,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2018.3
+set scripts_vivado_version 2019.1
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -46,7 +45,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
    create_project project_1 myproj -part xc7k160tfbg676-2
-   set_property BOARD_PART trenz.biz:tef1001_160_2i:part0:1.1 [current_project]
+   set_property BOARD_PART trenz.biz:tef1001_160_2i:part0:1.0 [current_project]
 }
 
 
@@ -134,10 +133,10 @@ xilinx.com:ip:axi_timer:2.0\
 xilinx.com:ip:xlconstant:1.1\
 trenz.biz:user:labtools_fmeter:1.0\
 xilinx.com:ip:mdm:3.2\
-xilinx.com:ip:microblaze:10.0\
+xilinx.com:ip:microblaze:11.0\
 xilinx.com:ip:axi_intc:4.1\
 xilinx.com:ip:xlconcat:2.1\
-xilinx.com:ip:mig_7series:4.1\
+xilinx.com:ip:mig_7series:4.2\
 xilinx.com:ip:proc_sys_reset:5.0\
 xilinx.com:ip:util_ds_buf:2.1\
 xilinx.com:ip:vio:3.0\
@@ -209,7 +208,9 @@ proc create_hier_cell_microblaze_0_local_memory { parentCell nameHier } {
 
   # Create interface pins
   create_bd_intf_pin -mode MirroredMaster -vlnv xilinx.com:interface:lmb_rtl:1.0 DLMB
+
   create_bd_intf_pin -mode MirroredMaster -vlnv xilinx.com:interface:lmb_rtl:1.0 ILMB
+
 
   # Create pins
   create_bd_pin -dir I -type clk LMB_Clk
@@ -300,13 +301,21 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.FREQ_HZ {200000000} \
    ] $CLK_DDR3_200MHz
+
   set CLK_PCIe_100MHz [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 CLK_PCIe_100MHz ]
+
   set DDR3_SDRAM [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR3_SDRAM ]
+
   set SCF [ create_bd_intf_port -mode Master -vlnv trenz.biz:user:SCF1001_bus_rtl:1.0 SCF ]
+
   set SI_FCLK [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 SI_FCLK ]
+
   set SI_MGT115_0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 SI_MGT115_0 ]
+
   set pcie_7x_mgt [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:pcie_7x_mgt_rtl:1.0 pcie_7x_mgt ]
+
   set spi_rtl [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:spi_rtl:1.0 spi_rtl ]
+
 
   # Create ports
   set PCI_PERSTN [ create_bd_port -dir I -type rst PCI_PERSTN ]
@@ -541,15 +550,10 @@ proc create_root_design { parentCell } {
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()
-
-group_bd_cells ddr_ram [get_bd_cells mig_7series_0] [get_bd_cells const_high] [get_bd_cells axi_interconnect_ddr] [get_bd_cells rst_axi_pcie_0_62M]
-group_bd_cells microblaze [get_bd_cells mdm_1] [get_bd_cells microblaze_0_axi_intc] [get_bd_cells microblaze_0_xlconcat] [get_bd_cells microblaze_0] [get_bd_cells microblaze_0_local_memory] [get_bd_cells microblaze_0_axi_periph] [get_bd_cells rst_clk_wiz_0_50M]
-group_bd_cells debug [get_bd_cells util_ds_buf_0] [get_bd_cells xlconcat_0] [get_bd_cells vio_0] [get_bd_cells labtools_fmeter_0] [get_bd_cells util_ds_buf_1]
-group_bd_cells pcie [get_bd_cells util_ds_buf_2] [get_bd_cells axi_pcie_0] [get_bd_cells xlconstant_high_pcie] [get_bd_cells rst_mig_7series_0_125M]
-group_bd_cells i2c [get_bd_cells axi_iic_0] [get_bd_cells SCF1001_0]
 
 
 ##################################################################
@@ -557,5 +561,6 @@ group_bd_cells i2c [get_bd_cells axi_iic_0] [get_bd_cells SCF1001_0]
 ##################################################################
 
 create_root_design ""
+
 
 
