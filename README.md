@@ -5,10 +5,11 @@ Project Description
 Replaces the default implementation of pcie to an xDMA/Bridge system. Host can now access all memory 
 components using the bar interface when used with Xioinx XDMA drivers.
 
-##Usage
+## Usage
 1. Edit "design_basic_settings.cmd" with text editor:
 ''' 
       @set XILDIR=C:\Xilinx
+      
       @set VIVADO_VERSION=2018.2
 '''      
 2. Run:
