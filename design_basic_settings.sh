@@ -39,7 +39,7 @@
 # -Important Note: Check if Xilinx default install path use upper or lower case
 export XILDIR=/opt/Xilinx
 # -Attention: These scripts support only the predefined Vivado Version. 
-export VIVADO_VERSION=2018.3
+export VIVADO_VERSION=2019.1
 # --------------------
 # Set Board part number of the project which should be created
 #    -Available Numbers: (you can use ID,PRODID from TExxxx_board_file.csv list) or special name "LAST_ID" to get the board with the highest ID in the *.csv list
