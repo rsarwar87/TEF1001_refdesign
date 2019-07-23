@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Mon Jul 22 20:36:52 2019
+| Date         : Tue Jul 23 16:16:10 2019
 | Host         : ukaea-fpga running 64-bit KDE neon User Edition 5.16
 | Command      : report_ip_status
 ------------------------------------------------------------------------------------
@@ -10,7 +10,7 @@ IP Status Summary
 
 1. Project IP Status
 --------------------
-Your project uses 33 IP. Some of these IP may have undergone changes in this release of the software. Please review the recommended actions.
+Your project uses 32 IP. Some of these IP may have undergone changes in this release of the software. Please review the recommended actions.
 
 More information on the Xilinx versioning policy is available at www.xilinx.com.
 
@@ -91,63 +91,59 @@ Project IP Instances
 |                                 |            |                     |           | Generator (MIG 7   | (Rev.   |               |            |                      |
 |                                 |            |                     |           | Series)            | 1)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_rst_axi_pcie_0_62M_0       | Up-to-date | No changes required |  *(17)    | Processor System   | 5.0     | 5.0 (Rev. 13) | Included   | xc7k160tfbg676-2     |
+| msys_rst_clk_wiz_0_50M_0        | Up-to-date | No changes required |  *(17)    | Processor System   | 5.0     | 5.0 (Rev. 13) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           | Reset              | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 13)     |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_rst_clk_wiz_0_50M_0        | Up-to-date | No changes required |  *(18)    | Processor System   | 5.0     | 5.0 (Rev. 13) | Included   | xc7k160tfbg676-2     |
+| msys_rst_mig_7series_0_125M_0   | Up-to-date | No changes required |  *(18)    | Processor System   | 5.0     | 5.0 (Rev. 13) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           | Reset              | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 13)     |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_rst_mig_7series_0_125M_0   | Up-to-date | No changes required |  *(19)    | Processor System   | 5.0     | 5.0 (Rev. 13) | Included   | xc7k160tfbg676-2     |
-|                                 |            |                     |           | Reset              | (Rev.   |               |            |                      |
-|                                 |            |                     |           |                    | 13)     |               |            |                      |
-+---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_util_ds_buf_0_0            | Up-to-date | No changes required |  *(20)    | Utility Buffer     | 2.1     | 2.1 (Rev. 19) | Included   | xc7k160tfbg676-2     |
+| msys_util_ds_buf_0_0            | Up-to-date | No changes required |  *(19)    | Utility Buffer     | 2.1     | 2.1 (Rev. 19) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 19)     |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_util_ds_buf_1_0            | Up-to-date | No changes required |  *(21)    | Utility Buffer     | 2.1     | 2.1 (Rev. 19) | Included   | xc7k160tfbg676-2     |
+| msys_util_ds_buf_1_0            | Up-to-date | No changes required |  *(20)    | Utility Buffer     | 2.1     | 2.1 (Rev. 19) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 19)     |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_util_ds_buf_2_0            | Up-to-date | No changes required |  *(22)    | Utility Buffer     | 2.1     | 2.1 (Rev. 19) | Included   | xc7k160tfbg676-2     |
+| msys_util_ds_buf_2_0            | Up-to-date | No changes required |  *(21)    | Utility Buffer     | 2.1     | 2.1 (Rev. 19) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 19)     |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_vio_0_0                    | Up-to-date | No changes required |  *(23)    | VIO (Virtual       | 3.0     | 3.0 (Rev. 20) | Included   | xc7k160tfbg676-2     |
+| msys_vio_0_0                    | Up-to-date | No changes required |  *(22)    | VIO (Virtual       | 3.0     | 3.0 (Rev. 20) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           | Input/Output)      | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 20)     |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_xdma_0_0                   | Up-to-date | No changes required |  *(24)    | DMA/Bridge         | 4.1     | 4.1 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
+| msys_xdma_0_0                   | Up-to-date | No changes required |  *(23)    | DMA/Bridge         | 4.1     | 4.1 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           | Subsystem for PCI  | (Rev.   |               |            |                      |
 |                                 |            |                     |           | Express (PCIe)     | 3)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_xlconcat_0_0               | Up-to-date | No changes required |  *(25)    | Concat             | 2.1     | 2.1 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
+| msys_xlconcat_0_0               | Up-to-date | No changes required |  *(24)    | Concat             | 2.1     | 2.1 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 3)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_xlconstant_high_pcie_0     | Up-to-date | No changes required |  *(26)    | Constant           | 1.1     | 1.1 (Rev. 6)  | Included   | xc7k160tfbg676-2     |
+| msys_xlconstant_high_pcie_0     | Up-to-date | No changes required |  *(25)    | Constant           | 1.1     | 1.1 (Rev. 6)  | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 6)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| msys_xdma_0_0_pcie2_ip          | Up-to-date | No changes required |  *(27)    | 7 Series           | 3.3     | 3.3 (Rev. 11) | Included   | xc7k160tfbg676-2     |
+| msys_xdma_0_0_pcie2_ip          | Up-to-date | No changes required |  *(26)    | 7 Series           | 3.3     | 3.3 (Rev. 11) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           | Integrated Block   | (Rev.   |               |            |                      |
 |                                 |            |                     |           | for PCI Express    | 11)     |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| pcie2_fifo_generator_dma_cpl    | Up-to-date | No changes required |  *(28)    | FIFO Generator     | 13.1    | 13.2 (Rev. 4) | Included   | xc7k160tfbg676-2     |
+| pcie2_fifo_generator_dma_cpl    | Up-to-date | No changes required |  *(27)    | FIFO Generator     | 13.1    | 13.2 (Rev. 4) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 4)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| pcie2_fifo_generator_tgt_brdg   | Up-to-date | No changes required |  *(29)    | FIFO Generator     | 13.1    | 13.2 (Rev. 4) | Included   | xc7k160tfbg676-2     |
+| pcie2_fifo_generator_tgt_brdg   | Up-to-date | No changes required |  *(28)    | FIFO Generator     | 13.1    | 13.2 (Rev. 4) | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           |                    | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 4)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| xdma_v4_1_3_blk_mem_64_noreg_be | Up-to-date | No changes required |  *(30)    | Block Memory       | 8.4     | 8.4 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
+| xdma_v4_1_3_blk_mem_64_noreg_be | Up-to-date | No changes required |  *(29)    | Block Memory       | 8.4     | 8.4 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           | Generator          | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 3)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
-| xdma_v4_1_3_blk_mem_64_reg_be   | Up-to-date | No changes required |  *(31)    | Block Memory       | 8.4     | 8.4 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
+| xdma_v4_1_3_blk_mem_64_reg_be   | Up-to-date | No changes required |  *(30)    | Block Memory       | 8.4     | 8.4 (Rev. 3)  | Included   | xc7k160tfbg676-2     |
 |                                 |            |                     |           | Generator          | (Rev.   |               |            |                      |
 |                                 |            |                     |           |                    | 3)      |               |            |                      |
 +---------------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
@@ -169,18 +165,17 @@ Project IP Instances
 *(16) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/mig_7series_v4_2/doc/mig_7series_v4_2_changelog.txt
 *(17) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
 *(18) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
-*(19) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(19) /opt/Xilinx/Vivado/2019.1/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
 *(20) /opt/Xilinx/Vivado/2019.1/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
 *(21) /opt/Xilinx/Vivado/2019.1/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
-*(22) /opt/Xilinx/Vivado/2019.1/data/rsb/iprepos/util_ds_buf_v2_1/doc/util_ds_buf_v2_1_changelog.txt
-*(23) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/vio_v3_0/doc/vio_v3_0_changelog.txt
-*(24) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/xdma_v4_1/doc/xdma_v4_1_changelog.txt
-*(25) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
-*(26) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/xlconstant_v1_1/doc/xlconstant_v1_1_changelog.txt
-*(27) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/pcie_7x_v3_3/doc/pcie_7x_v3_3_changelog.txt
+*(22) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/vio_v3_0/doc/vio_v3_0_changelog.txt
+*(23) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/xdma_v4_1/doc/xdma_v4_1_changelog.txt
+*(24) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+*(25) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/xlconstant_v1_1/doc/xlconstant_v1_1_changelog.txt
+*(26) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/pcie_7x_v3_3/doc/pcie_7x_v3_3_changelog.txt
+*(27) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/fifo_generator_v13_2/doc/fifo_generator_v13_2_changelog.txt
 *(28) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/fifo_generator_v13_2/doc/fifo_generator_v13_2_changelog.txt
-*(29) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/fifo_generator_v13_2/doc/fifo_generator_v13_2_changelog.txt
+*(29) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/blk_mem_gen_v8_4/doc/blk_mem_gen_v8_4_changelog.txt
 *(30) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/blk_mem_gen_v8_4/doc/blk_mem_gen_v8_4_changelog.txt
-*(31) /opt/Xilinx/Vivado/2019.1/data/ip/xilinx/blk_mem_gen_v8_4/doc/blk_mem_gen_v8_4_changelog.txt
 
 

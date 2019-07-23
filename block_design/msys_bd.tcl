@@ -1,4 +1,4 @@
-catch {TE::UTILS::te_msg TE_BD-0 INFO "This block design tcl-file was generate with Trenz Electronic GmbH Board Part:trenz.biz:tef1001_160_2i:part0:1.0, FPGA: xc7k160tfbg676-2 at 2019-07-22T20:43:07."}
+catch {TE::UTILS::te_msg TE_BD-0 INFO "This block design tcl-file was generate with Trenz Electronic GmbH Board Part:trenz.biz:tef1001_160_2i:part0:1.0, FPGA: xc7k160tfbg676-2 at 2019-07-23T15:54:52."}
 
 ################################################################
 # This is a generated script based on design: msys
@@ -125,19 +125,19 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
-xilinx.com:ip:axi_quad_spi:3.2\
-xilinx.com:ip:axi_timer:2.0\
 trenz.biz:user:SCF1001:1.0\
 xilinx.com:ip:axi_iic:2.0\
+xilinx.com:ip:axi_quad_spi:3.2\
+xilinx.com:ip:axi_timer:2.0\
+xilinx.com:ip:xlconstant:1.1\
+xilinx.com:ip:mig_7series:4.2\
+xilinx.com:ip:proc_sys_reset:5.0\
+xilinx.com:ip:util_ds_buf:2.1\
+xilinx.com:ip:xdma:4.1\
 xilinx.com:ip:mdm:3.2\
 xilinx.com:ip:microblaze:11.0\
 xilinx.com:ip:axi_intc:4.1\
 xilinx.com:ip:xlconcat:2.1\
-xilinx.com:ip:proc_sys_reset:5.0\
-xilinx.com:ip:util_ds_buf:2.1\
-xilinx.com:ip:xdma:4.1\
-xilinx.com:ip:xlconstant:1.1\
-xilinx.com:ip:mig_7series:4.2\
 trenz.biz:user:labtools_fmeter:1.0\
 xilinx.com:ip:vio:3.0\
 xilinx.com:ip:lmb_bram_if_cntlr:4.0\
@@ -346,15 +346,15 @@ proc create_hier_cell_vio { parentCell nameHier } {
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
 
   # Create interface connections
-  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins SI_FCLK] [get_bd_intf_pins util_ds_buf_0/CLK_IN_D]
-  connect_bd_intf_net -intf_net Conn2 [get_bd_intf_pins SI_MGT115_0] [get_bd_intf_pins util_ds_buf_1/CLK_IN_D]
+  connect_bd_intf_net -intf_net CLK_IN_D_1 [get_bd_intf_pins SI_FCLK] [get_bd_intf_pins util_ds_buf_0/CLK_IN_D]
+  connect_bd_intf_net -intf_net CLK_IN_D_1_1 [get_bd_intf_pins SI_MGT115_0] [get_bd_intf_pins util_ds_buf_1/CLK_IN_D]
 
   # Create port connections
   connect_bd_net -net axi_pcie_0_mmcm_lock [get_bd_pins probe_in7] [get_bd_pins vio_0/probe_in7]
-  connect_bd_net -net labtools_fmeter_0_F0 [get_bd_pins labtools_fmeter_0/F0] [get_bd_pins vio_0/probe_in1]
-  connect_bd_net -net labtools_fmeter_0_F1 [get_bd_pins labtools_fmeter_0/F1] [get_bd_pins vio_0/probe_in2]
-  connect_bd_net -net labtools_fmeter_0_F2 [get_bd_pins labtools_fmeter_0/F2] [get_bd_pins vio_0/probe_in3]
-  connect_bd_net -net labtools_fmeter_0_F3 [get_bd_pins labtools_fmeter_0/F3] [get_bd_pins vio_0/probe_in4]
+  connect_bd_net -net labt_SI_CLK0 [get_bd_pins labtools_fmeter_0/F0] [get_bd_pins vio_0/probe_in1]
+  connect_bd_net -net labt_SI_CLK1 [get_bd_pins labtools_fmeter_0/F1] [get_bd_pins vio_0/probe_in2]
+  connect_bd_net -net labt_SI_CLK2 [get_bd_pins labtools_fmeter_0/F2] [get_bd_pins vio_0/probe_in3]
+  connect_bd_net -net labt_SI_MGT [get_bd_pins labtools_fmeter_0/F3] [get_bd_pins vio_0/probe_in4]
   connect_bd_net -net microblaze_0_Clk [get_bd_pins clk] [get_bd_pins labtools_fmeter_0/refclk] [get_bd_pins vio_0/clk]
   connect_bd_net -net mig_7series_0_init_calib_complete [get_bd_pins probe_in6] [get_bd_pins vio_0/probe_in6]
   connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins probe_in5] [get_bd_pins vio_0/probe_in5]
@@ -370,13 +370,13 @@ proc create_hier_cell_vio { parentCell nameHier } {
   current_bd_instance $oldCurInst
 }
 
-# Hierarchical cell: sd_ram
-proc create_hier_cell_sd_ram { parentCell nameHier } {
+# Hierarchical cell: sys_mb
+proc create_hier_cell_sys_mb { parentCell nameHier } {
 
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_sd_ram() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_sys_mb() - Empty argument(s)!"}
      return
   }
 
@@ -405,68 +405,97 @@ proc create_hier_cell_sd_ram { parentCell nameHier } {
   current_bd_instance $hier_obj
 
   # Create interface pins
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 CLK_DDR3_200MHz
+  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_DC
 
-  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR3_SDRAM
+  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_DP
 
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S00_AXI
+  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_IC
 
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S01_AXI
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI1
 
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S02_AXI1
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 s_axi
 
 
   # Create pins
-  create_bd_pin -dir I -type rst S01_ARESETN
-  create_bd_pin -dir I -type clk S02_ACLK
-  create_bd_pin -dir I -type rst S02_ARESETN1
-  create_bd_pin -dir O init_calib_complete
-  create_bd_pin -dir O mmcm_locked
-  create_bd_pin -dir O -type clk ui_addn_clk_0
+  create_bd_pin -dir I -from 0 -to 0 In1
+  create_bd_pin -dir I -from 0 -to 0 In2
+  create_bd_pin -dir I -from 0 -to 0 In3
+  create_bd_pin -dir I -type clk S_AXI_ACLK
+  create_bd_pin -dir I dcm_locked
+  create_bd_pin -dir I -type rst ext_reset_in
+  create_bd_pin -dir O -from 0 -to 0 -type rst interconnect_aresetn
+  create_bd_pin -dir O -from 0 -to 0 -type rst peripheral_aresetn
 
-  # Create instance: axi_interconnect_ddr, and set properties
-  set axi_interconnect_ddr [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_ddr ]
+  # Create instance: mdm_1, and set properties
+  set mdm_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mdm:3.2 mdm_1 ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {1} \
-   CONFIG.NUM_SI {3} \
-   CONFIG.SYNCHRONIZATION_STAGES {2} \
- ] $axi_interconnect_ddr
+   CONFIG.C_USE_UART {1} \
+ ] $mdm_1
 
-  # Create instance: const_high, and set properties
-  set const_high [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 const_high ]
+  # Create instance: microblaze_0, and set properties
+  set microblaze_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:11.0 microblaze_0 ]
   set_property -dict [ list \
-   CONFIG.CONST_VAL {1} \
- ] $const_high
+   CONFIG.C_ADDR_TAG_BITS {16} \
+   CONFIG.C_CACHE_BYTE_SIZE {32768} \
+   CONFIG.C_DCACHE_ADDR_TAG {16} \
+   CONFIG.C_DCACHE_BYTE_SIZE {32768} \
+   CONFIG.C_DEBUG_ENABLED {1} \
+   CONFIG.C_D_AXI {1} \
+   CONFIG.C_D_LMB {1} \
+   CONFIG.C_I_LMB {1} \
+   CONFIG.C_USE_BARREL {1} \
+   CONFIG.C_USE_DCACHE {1} \
+   CONFIG.C_USE_DIV {1} \
+   CONFIG.C_USE_FPU {1} \
+   CONFIG.C_USE_HW_MUL {1} \
+   CONFIG.C_USE_ICACHE {1} \
+   CONFIG.C_USE_MSR_INSTR {0} \
+   CONFIG.C_USE_PCMP_INSTR {1} \
+ ] $microblaze_0
 
-  # Create instance: mig_7series_0, and set properties
-  set mig_7series_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:4.2 mig_7series_0 ]
+  # Create instance: microblaze_0_axi_intc, and set properties
+  set microblaze_0_axi_intc [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:4.1 microblaze_0_axi_intc ]
   set_property -dict [ list \
-   CONFIG.BOARD_MIG_PARAM {DDR3_SDRAM} \
- ] $mig_7series_0
+   CONFIG.C_HAS_FAST {1} \
+ ] $microblaze_0_axi_intc
 
-  # Create instance: rst_mig_7series_0_125M, and set properties
-  set rst_mig_7series_0_125M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_mig_7series_0_125M ]
+  # Create instance: microblaze_0_local_memory
+  create_hier_cell_microblaze_0_local_memory $hier_obj microblaze_0_local_memory
+
+  # Create instance: microblaze_0_xlconcat, and set properties
+  set microblaze_0_xlconcat [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 microblaze_0_xlconcat ]
+  set_property -dict [ list \
+   CONFIG.NUM_PORTS {4} \
+ ] $microblaze_0_xlconcat
+
+  # Create instance: rst_clk_wiz_0_50M, and set properties
+  set rst_clk_wiz_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_clk_wiz_0_50M ]
 
   # Create interface connections
-  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins S00_AXI] [get_bd_intf_pins axi_interconnect_ddr/S00_AXI]
-  connect_bd_intf_net -intf_net Conn2 [get_bd_intf_pins S01_AXI] [get_bd_intf_pins axi_interconnect_ddr/S01_AXI]
-  connect_bd_intf_net -intf_net Conn3 [get_bd_intf_pins S02_AXI1] [get_bd_intf_pins axi_interconnect_ddr/S02_AXI]
-  connect_bd_intf_net -intf_net axi_interconnect_ddr_M00_AXI [get_bd_intf_pins axi_interconnect_ddr/M00_AXI] [get_bd_intf_pins mig_7series_0/S_AXI]
-  connect_bd_intf_net -intf_net mig_7series_0_DDR3 [get_bd_intf_pins DDR3_SDRAM] [get_bd_intf_pins mig_7series_0/DDR3]
-  connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_pins CLK_DDR3_200MHz] [get_bd_intf_pins mig_7series_0/SYS_CLK]
+  connect_bd_intf_net -intf_net microblaze_0_M_AXI_DC [get_bd_intf_pins M_AXI_DC] [get_bd_intf_pins microblaze_0/M_AXI_DC]
+  connect_bd_intf_net -intf_net microblaze_0_M_AXI_IC [get_bd_intf_pins M_AXI_IC] [get_bd_intf_pins microblaze_0/M_AXI_IC]
+  connect_bd_intf_net -intf_net microblaze_0_axi_dp [get_bd_intf_pins M_AXI_DP] [get_bd_intf_pins microblaze_0/M_AXI_DP]
+  connect_bd_intf_net -intf_net microblaze_0_debug [get_bd_intf_pins mdm_1/MBDEBUG_0] [get_bd_intf_pins microblaze_0/DEBUG]
+  connect_bd_intf_net -intf_net microblaze_0_dlmb_1 [get_bd_intf_pins microblaze_0/DLMB] [get_bd_intf_pins microblaze_0_local_memory/DLMB]
+  connect_bd_intf_net -intf_net microblaze_0_ilmb_1 [get_bd_intf_pins microblaze_0/ILMB] [get_bd_intf_pins microblaze_0_local_memory/ILMB]
+  connect_bd_intf_net -intf_net microblaze_0_intc_axi [get_bd_intf_pins s_axi] [get_bd_intf_pins microblaze_0_axi_intc/s_axi]
+  connect_bd_intf_net -intf_net microblaze_0_interrupt [get_bd_intf_pins microblaze_0/INTERRUPT] [get_bd_intf_pins microblaze_0_axi_intc/interrupt]
+  connect_bd_intf_net -intf_net microblaze_0_mdm_axi [get_bd_intf_pins S_AXI1] [get_bd_intf_pins mdm_1/S_AXI]
 
   # Create port connections
-  connect_bd_net -net ARESETN_1 [get_bd_pins axi_interconnect_ddr/ARESETN] [get_bd_pins rst_mig_7series_0_125M/interconnect_aresetn]
-  connect_bd_net -net S01_ARESETN_1 [get_bd_pins S01_ARESETN] [get_bd_pins axi_interconnect_ddr/S00_ARESETN] [get_bd_pins axi_interconnect_ddr/S01_ARESETN]
-  connect_bd_net -net S02_ACLK_1 [get_bd_pins S02_ACLK] [get_bd_pins axi_interconnect_ddr/S02_ACLK]
-  connect_bd_net -net S02_ARESETN_1 [get_bd_pins S02_ARESETN1] [get_bd_pins axi_interconnect_ddr/S02_ARESETN]
-  connect_bd_net -net const_high_dout [get_bd_pins const_high/dout] [get_bd_pins mig_7series_0/sys_rst]
-  connect_bd_net -net microblaze_0_Clk [get_bd_pins ui_addn_clk_0] [get_bd_pins axi_interconnect_ddr/S00_ACLK] [get_bd_pins axi_interconnect_ddr/S01_ACLK] [get_bd_pins mig_7series_0/ui_addn_clk_0]
-  connect_bd_net -net mig_7series_0_init_calib_complete [get_bd_pins init_calib_complete] [get_bd_pins mig_7series_0/init_calib_complete]
-  connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins mmcm_locked] [get_bd_pins mig_7series_0/mmcm_locked] [get_bd_pins rst_mig_7series_0_125M/dcm_locked]
-  connect_bd_net -net mig_7series_0_ui_clk [get_bd_pins axi_interconnect_ddr/ACLK] [get_bd_pins axi_interconnect_ddr/M00_ACLK] [get_bd_pins mig_7series_0/ui_clk] [get_bd_pins rst_mig_7series_0_125M/slowest_sync_clk]
-  connect_bd_net -net mig_7series_0_ui_clk_sync_rst [get_bd_pins mig_7series_0/ui_clk_sync_rst] [get_bd_pins rst_mig_7series_0_125M/ext_reset_in]
-  connect_bd_net -net rst_mig_7series_0_125M_peripheral_aresetn [get_bd_pins axi_interconnect_ddr/M00_ARESETN] [get_bd_pins mig_7series_0/aresetn] [get_bd_pins rst_mig_7series_0_125M/peripheral_aresetn]
+  connect_bd_net -net In1_1 [get_bd_pins In1] [get_bd_pins microblaze_0_xlconcat/In1]
+  connect_bd_net -net In2_1 [get_bd_pins In2] [get_bd_pins microblaze_0_xlconcat/In2]
+  connect_bd_net -net In3_1 [get_bd_pins In3] [get_bd_pins microblaze_0_xlconcat/In3]
+  connect_bd_net -net mdm_1_Interrupt [get_bd_pins mdm_1/Interrupt] [get_bd_pins microblaze_0_xlconcat/In0]
+  connect_bd_net -net mdm_1_debug_sys_rst [get_bd_pins mdm_1/Debug_SYS_Rst] [get_bd_pins rst_clk_wiz_0_50M/mb_debug_sys_rst]
+  connect_bd_net -net microblaze_0_Clk [get_bd_pins S_AXI_ACLK] [get_bd_pins mdm_1/S_AXI_ACLK] [get_bd_pins microblaze_0/Clk] [get_bd_pins microblaze_0_axi_intc/processor_clk] [get_bd_pins microblaze_0_axi_intc/s_axi_aclk] [get_bd_pins microblaze_0_local_memory/LMB_Clk] [get_bd_pins rst_clk_wiz_0_50M/slowest_sync_clk]
+  connect_bd_net -net microblaze_0_xlconcat_dout [get_bd_pins microblaze_0_axi_intc/intr] [get_bd_pins microblaze_0_xlconcat/dout]
+  connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins dcm_locked] [get_bd_pins rst_clk_wiz_0_50M/dcm_locked]
+  connect_bd_net -net rst_clk_wiz_0_50M_bus_struct_reset [get_bd_pins microblaze_0_local_memory/SYS_Rst] [get_bd_pins rst_clk_wiz_0_50M/bus_struct_reset]
+  connect_bd_net -net rst_clk_wiz_0_50M_interconnect_aresetn [get_bd_pins interconnect_aresetn] [get_bd_pins rst_clk_wiz_0_50M/interconnect_aresetn]
+  connect_bd_net -net rst_clk_wiz_0_50M_mb_reset [get_bd_pins microblaze_0/Reset] [get_bd_pins microblaze_0_axi_intc/processor_rst] [get_bd_pins rst_clk_wiz_0_50M/mb_reset]
+  connect_bd_net -net rst_clk_wiz_0_50M_peripheral_aresetn [get_bd_pins peripheral_aresetn] [get_bd_pins mdm_1/S_AXI_ARESETN] [get_bd_pins microblaze_0_axi_intc/s_axi_aresetn] [get_bd_pins rst_clk_wiz_0_50M/peripheral_aresetn]
+  connect_bd_net -net sys_rst_n [get_bd_pins ext_reset_in] [get_bd_pins rst_clk_wiz_0_50M/ext_reset_in]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -518,13 +547,9 @@ proc create_hier_cell_pcie { parentCell nameHier } {
 
   # Create pins
   create_bd_pin -dir I -type rst PCI_PERSTN
-  create_bd_pin -dir O -type clk axi_aclk
-  create_bd_pin -dir O -type rst axi_aresetn
-  create_bd_pin -dir I -type rst ext_reset_in
-  create_bd_pin -dir O user_lnk_up
-
-  # Create instance: rst_axi_pcie_0_62M, and set properties
-  set rst_axi_pcie_0_62M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_axi_pcie_0_62M ]
+  create_bd_pin -dir O -type clk axi_aclk_out
+  create_bd_pin -dir O axi_aresetn
+  create_bd_pin -dir O mmcm_lock
 
   # Create instance: util_ds_buf_2, and set properties
   set util_ds_buf_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_ds_buf:2.1 util_ds_buf_2 ]
@@ -540,8 +565,7 @@ proc create_hier_cell_pcie { parentCell nameHier } {
    CONFIG.PF3_DEVICE_ID_mqdma {9024} \
    CONFIG.axi_data_width {128_bit} \
    CONFIG.axilite_master_en {true} \
-   CONFIG.axilite_master_scale {Gigabytes} \
-   CONFIG.axilite_master_size {1} \
+   CONFIG.axilite_master_size {8} \
    CONFIG.axisten_freq {125} \
    CONFIG.pf0_device_id {7024} \
    CONFIG.pf0_msi_enabled {false} \
@@ -554,34 +578,35 @@ proc create_hier_cell_pcie { parentCell nameHier } {
 
   # Create instance: xlconstant_high_pcie, and set properties
   set xlconstant_high_pcie [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_high_pcie ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+ ] $xlconstant_high_pcie
 
   # Create interface connections
-  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins CLK_PCIe_100MHz] [get_bd_intf_pins util_ds_buf_2/CLK_IN_D]
+  connect_bd_intf_net -intf_net CLK_IN_D_2 [get_bd_intf_pins CLK_PCIe_100MHz] [get_bd_intf_pins util_ds_buf_2/CLK_IN_D]
   connect_bd_intf_net -intf_net xdma_0_M_AXI [get_bd_intf_pins M_AXI] [get_bd_intf_pins xdma_0/M_AXI]
   connect_bd_intf_net -intf_net xdma_0_M_AXI_LITE [get_bd_intf_pins M_AXI_LITE] [get_bd_intf_pins xdma_0/M_AXI_LITE]
   connect_bd_intf_net -intf_net xdma_0_pcie_mgt [get_bd_intf_pins pcie_7x_mgt] [get_bd_intf_pins xdma_0/pcie_mgt]
 
   # Create port connections
-  connect_bd_net -net PCI_PERSTN_1 [get_bd_pins PCI_PERSTN] [get_bd_pins rst_axi_pcie_0_62M/aux_reset_in]
-  connect_bd_net -net axi_pcie_0_axi_aclk_out [get_bd_pins axi_aclk] [get_bd_pins rst_axi_pcie_0_62M/slowest_sync_clk] [get_bd_pins xdma_0/axi_aclk]
-  connect_bd_net -net ext_reset_in_1 [get_bd_pins ext_reset_in] [get_bd_pins rst_axi_pcie_0_62M/ext_reset_in]
-  connect_bd_net -net probe_in7_1 [get_bd_pins user_lnk_up] [get_bd_pins xdma_0/user_lnk_up]
-  connect_bd_net -net rst_axi_pcie_0_62M_peripheral_aresetn [get_bd_pins rst_axi_pcie_0_62M/peripheral_aresetn] [get_bd_pins xdma_0/sys_rst_n]
+  connect_bd_net -net PCI_PERSTN_1 [get_bd_pins PCI_PERSTN] [get_bd_pins xdma_0/sys_rst_n]
   connect_bd_net -net util_ds_buf_2_IBUF_OUT [get_bd_pins util_ds_buf_2/IBUF_OUT] [get_bd_pins xdma_0/sys_clk]
+  connect_bd_net -net xdma_0_axi_aclk [get_bd_pins axi_aclk_out] [get_bd_pins xdma_0/axi_aclk]
   connect_bd_net -net xdma_0_axi_aresetn [get_bd_pins axi_aresetn] [get_bd_pins xdma_0/axi_aresetn]
+  connect_bd_net -net xdma_0_user_lnk_up [get_bd_pins mmcm_lock] [get_bd_pins xdma_0/user_lnk_up]
   connect_bd_net -net xlconstant_high_pcie_dout [get_bd_pins xdma_0/usr_irq_req] [get_bd_pins xlconstant_high_pcie/dout]
 
   # Restore current instance
   current_bd_instance $oldCurInst
 }
 
-# Hierarchical cell: mb_sys
-proc create_hier_cell_mb_sys { parentCell nameHier } {
+# Hierarchical cell: ddr
+proc create_hier_cell_ddr { parentCell nameHier } {
 
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_mb_sys() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_ddr() - Empty argument(s)!"}
      return
   }
 
@@ -610,156 +635,68 @@ proc create_hier_cell_mb_sys { parentCell nameHier } {
   current_bd_instance $hier_obj
 
   # Create interface pins
-  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_DC
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 CLK_DDR3_200MHz
 
-  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_DP
+  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR3_SDRAM
 
-  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_IC
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S00_AXI
 
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S01_AXI
 
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 s_axi1
-
-
-  # Create pins
-  create_bd_pin -dir I -type clk Clk
-  create_bd_pin -dir I -from 0 -to 0 In1
-  create_bd_pin -dir I -from 0 -to 0 In2
-  create_bd_pin -dir I -from 0 -to 0 In3
-  create_bd_pin -dir I dcm_locked
-  create_bd_pin -dir I -type rst ext_reset_in
-  create_bd_pin -dir O -from 0 -to 0 -type rst interconnect_aresetn
-  create_bd_pin -dir O -from 0 -to 0 -type rst peripheral_aresetn
-
-  # Create instance: mdm_1, and set properties
-  set mdm_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mdm:3.2 mdm_1 ]
-  set_property -dict [ list \
-   CONFIG.C_USE_UART {1} \
- ] $mdm_1
-
-  # Create instance: microblaze_0, and set properties
-  set microblaze_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:11.0 microblaze_0 ]
-  set_property -dict [ list \
-   CONFIG.C_ADDR_TAG_BITS {16} \
-   CONFIG.C_CACHE_BYTE_SIZE {32768} \
-   CONFIG.C_DCACHE_ADDR_TAG {16} \
-   CONFIG.C_DCACHE_BYTE_SIZE {32768} \
-   CONFIG.C_DEBUG_ENABLED {1} \
-   CONFIG.C_D_AXI {1} \
-   CONFIG.C_D_LMB {1} \
-   CONFIG.C_I_LMB {1} \
-   CONFIG.C_USE_DCACHE {1} \
-   CONFIG.C_USE_ICACHE {1} \
- ] $microblaze_0
-
-  # Create instance: microblaze_0_axi_intc, and set properties
-  set microblaze_0_axi_intc [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:4.1 microblaze_0_axi_intc ]
-  set_property -dict [ list \
-   CONFIG.C_HAS_FAST {1} \
- ] $microblaze_0_axi_intc
-
-  # Create instance: microblaze_0_local_memory
-  create_hier_cell_microblaze_0_local_memory $hier_obj microblaze_0_local_memory
-
-  # Create instance: microblaze_0_xlconcat, and set properties
-  set microblaze_0_xlconcat [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 microblaze_0_xlconcat ]
-  set_property -dict [ list \
-   CONFIG.NUM_PORTS {4} \
- ] $microblaze_0_xlconcat
-
-  # Create instance: rst_clk_wiz_0_50M, and set properties
-  set rst_clk_wiz_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_clk_wiz_0_50M ]
-
-  # Create interface connections
-  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins S_AXI] [get_bd_intf_pins mdm_1/S_AXI]
-  connect_bd_intf_net -intf_net Conn2 [get_bd_intf_pins s_axi1] [get_bd_intf_pins microblaze_0_axi_intc/s_axi]
-  connect_bd_intf_net -intf_net mdm_1_MBDEBUG_0 [get_bd_intf_pins mdm_1/MBDEBUG_0] [get_bd_intf_pins microblaze_0/DEBUG]
-  connect_bd_intf_net -intf_net microblaze_0_DLMB [get_bd_intf_pins microblaze_0/DLMB] [get_bd_intf_pins microblaze_0_local_memory/DLMB]
-  connect_bd_intf_net -intf_net microblaze_0_ILMB [get_bd_intf_pins microblaze_0/ILMB] [get_bd_intf_pins microblaze_0_local_memory/ILMB]
-  connect_bd_intf_net -intf_net microblaze_0_M_AXI_DC [get_bd_intf_pins M_AXI_DC] [get_bd_intf_pins microblaze_0/M_AXI_DC]
-  connect_bd_intf_net -intf_net microblaze_0_M_AXI_IC [get_bd_intf_pins M_AXI_IC] [get_bd_intf_pins microblaze_0/M_AXI_IC]
-  connect_bd_intf_net -intf_net microblaze_0_axi_dp [get_bd_intf_pins M_AXI_DP] [get_bd_intf_pins microblaze_0/M_AXI_DP]
-  connect_bd_intf_net -intf_net microblaze_0_axi_intc_interrupt [get_bd_intf_pins microblaze_0/INTERRUPT] [get_bd_intf_pins microblaze_0_axi_intc/interrupt]
-
-  # Create port connections
-  connect_bd_net -net In1_1 [get_bd_pins In1] [get_bd_pins microblaze_0_xlconcat/In1]
-  connect_bd_net -net In2_1 [get_bd_pins In2] [get_bd_pins microblaze_0_xlconcat/In2]
-  connect_bd_net -net In3_1 [get_bd_pins In3] [get_bd_pins microblaze_0_xlconcat/In3]
-  connect_bd_net -net SYS_Rst_1 [get_bd_pins microblaze_0_local_memory/SYS_Rst] [get_bd_pins rst_clk_wiz_0_50M/bus_struct_reset]
-  connect_bd_net -net S_AXI_ARESETN_1 [get_bd_pins peripheral_aresetn] [get_bd_pins mdm_1/S_AXI_ARESETN] [get_bd_pins microblaze_0_axi_intc/s_axi_aresetn] [get_bd_pins rst_clk_wiz_0_50M/peripheral_aresetn]
-  connect_bd_net -net dcm_locked_1 [get_bd_pins dcm_locked] [get_bd_pins rst_clk_wiz_0_50M/dcm_locked]
-  connect_bd_net -net ext_reset_in_1 [get_bd_pins ext_reset_in] [get_bd_pins rst_clk_wiz_0_50M/ext_reset_in]
-  connect_bd_net -net mdm_1_Debug_SYS_Rst [get_bd_pins mdm_1/Debug_SYS_Rst] [get_bd_pins rst_clk_wiz_0_50M/mb_debug_sys_rst]
-  connect_bd_net -net mdm_1_Interrupt [get_bd_pins mdm_1/Interrupt] [get_bd_pins microblaze_0_xlconcat/In0]
-  connect_bd_net -net microblaze_0_Clk [get_bd_pins Clk] [get_bd_pins mdm_1/S_AXI_ACLK] [get_bd_pins microblaze_0/Clk] [get_bd_pins microblaze_0_axi_intc/processor_clk] [get_bd_pins microblaze_0_axi_intc/s_axi_aclk] [get_bd_pins microblaze_0_local_memory/LMB_Clk] [get_bd_pins rst_clk_wiz_0_50M/slowest_sync_clk]
-  connect_bd_net -net microblaze_0_xlconcat_dout [get_bd_pins microblaze_0_axi_intc/intr] [get_bd_pins microblaze_0_xlconcat/dout]
-  connect_bd_net -net rst_clk_wiz_0_50M_interconnect_aresetn [get_bd_pins interconnect_aresetn] [get_bd_pins rst_clk_wiz_0_50M/interconnect_aresetn]
-  connect_bd_net -net rst_clk_wiz_0_50M_mb_reset [get_bd_pins microblaze_0/Reset] [get_bd_pins microblaze_0_axi_intc/processor_rst] [get_bd_pins rst_clk_wiz_0_50M/mb_reset]
-
-  # Restore current instance
-  current_bd_instance $oldCurInst
-}
-
-# Hierarchical cell: iic
-proc create_hier_cell_iic { parentCell nameHier } {
-
-  variable script_folder
-
-  if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_iic() - Empty argument(s)!"}
-     return
-  }
-
-  # Get object for parentCell
-  set parentObj [get_bd_cells $parentCell]
-  if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
-     return
-  }
-
-  # Make sure parentObj is hier blk
-  set parentType [get_property TYPE $parentObj]
-  if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
-     return
-  }
-
-  # Save current instance; Restore later
-  set oldCurInst [current_bd_instance .]
-
-  # Set parent object as current
-  current_bd_instance $parentObj
-
-  # Create cell and set as current instance
-  set hier_obj [create_bd_cell -type hier $nameHier]
-  current_bd_instance $hier_obj
-
-  # Create interface pins
-  create_bd_intf_pin -mode Master -vlnv trenz.biz:user:SCF1001_bus_rtl:1.0 SCF
-
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S02_AXI1
 
 
   # Create pins
-  create_bd_pin -dir O -type intr iic2intc_irpt
-  create_bd_pin -dir I -type clk s_axi_aclk
-  create_bd_pin -dir I -type rst s_axi_aresetn
+  create_bd_pin -dir O -type clk S00_ACLK
+  create_bd_pin -dir I -type rst S01_ARESETN
+  create_bd_pin -dir I -type clk S02_ACLK
+  create_bd_pin -dir I -type rst S02_ARESETN1
+  create_bd_pin -dir O dcm_locked
+  create_bd_pin -dir O init_calib_complete
 
-  # Create instance: SCF1001_0, and set properties
-  set SCF1001_0 [ create_bd_cell -type ip -vlnv trenz.biz:user:SCF1001:1.0 SCF1001_0 ]
+  # Create instance: axi_interconnect_ddr, and set properties
+  set axi_interconnect_ddr [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_ddr ]
+  set_property -dict [ list \
+   CONFIG.NUM_MI {1} \
+   CONFIG.NUM_SI {3} \
+   CONFIG.SYNCHRONIZATION_STAGES {2} \
+ ] $axi_interconnect_ddr
 
-  # Create instance: axi_iic_0, and set properties
-  set axi_iic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_iic:2.0 axi_iic_0 ]
+  # Create instance: const_high, and set properties
+  set const_high [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 const_high ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {1} \
+ ] $const_high
+
+  # Create instance: mig_7series_0, and set properties
+  set mig_7series_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:4.2 mig_7series_0 ]
+  set_property -dict [ list \
+   CONFIG.BOARD_MIG_PARAM {DDR3_SDRAM} \
+ ] $mig_7series_0
+
+  # Create instance: rst_mig_7series_0_125M, and set properties
+  set rst_mig_7series_0_125M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_mig_7series_0_125M ]
 
   # Create interface connections
-  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins SCF] [get_bd_intf_pins SCF1001_0/SCF]
-  connect_bd_intf_net -intf_net axi_iic_0_IIC [get_bd_intf_pins SCF1001_0/EMIO_I2C] [get_bd_intf_pins axi_iic_0/IIC]
-  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M04_AXI [get_bd_intf_pins S_AXI] [get_bd_intf_pins axi_iic_0/S_AXI]
+  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins S02_AXI1] [get_bd_intf_pins axi_interconnect_ddr/S02_AXI]
+  connect_bd_intf_net -intf_net axi_interconnect_ddr_M00_AXI [get_bd_intf_pins axi_interconnect_ddr/M00_AXI] [get_bd_intf_pins mig_7series_0/S_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_M_AXI_DC [get_bd_intf_pins S00_AXI] [get_bd_intf_pins axi_interconnect_ddr/S00_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_M_AXI_IC [get_bd_intf_pins S01_AXI] [get_bd_intf_pins axi_interconnect_ddr/S01_AXI]
+  connect_bd_intf_net -intf_net mig_7series_0_DDR3 [get_bd_intf_pins DDR3_SDRAM] [get_bd_intf_pins mig_7series_0/DDR3]
+  connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_pins CLK_DDR3_200MHz] [get_bd_intf_pins mig_7series_0/SYS_CLK]
 
   # Create port connections
-  connect_bd_net -net axi_iic_0_iic2intc_irpt [get_bd_pins iic2intc_irpt] [get_bd_pins axi_iic_0/iic2intc_irpt]
-  connect_bd_net -net microblaze_0_Clk [get_bd_pins s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk]
-  connect_bd_net -net rst_clk_wiz_0_50M_peripheral_aresetn [get_bd_pins s_axi_aresetn] [get_bd_pins axi_iic_0/s_axi_aresetn]
+  connect_bd_net -net S02_ACLK_1 [get_bd_pins S02_ACLK] [get_bd_pins axi_interconnect_ddr/S02_ACLK]
+  connect_bd_net -net S02_ARESETN_1 [get_bd_pins S02_ARESETN1] [get_bd_pins axi_interconnect_ddr/S02_ARESETN]
+  connect_bd_net -net const_high_dout [get_bd_pins const_high/dout] [get_bd_pins mig_7series_0/sys_rst]
+  connect_bd_net -net microblaze_0_Clk [get_bd_pins S00_ACLK] [get_bd_pins axi_interconnect_ddr/S00_ACLK] [get_bd_pins axi_interconnect_ddr/S01_ACLK] [get_bd_pins mig_7series_0/ui_addn_clk_0]
+  connect_bd_net -net mig_7series_0_init_calib_complete [get_bd_pins init_calib_complete] [get_bd_pins mig_7series_0/init_calib_complete]
+  connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins dcm_locked] [get_bd_pins mig_7series_0/mmcm_locked] [get_bd_pins rst_mig_7series_0_125M/dcm_locked]
+  connect_bd_net -net mig_7series_0_ui_clk [get_bd_pins axi_interconnect_ddr/ACLK] [get_bd_pins axi_interconnect_ddr/M00_ACLK] [get_bd_pins mig_7series_0/ui_clk] [get_bd_pins rst_mig_7series_0_125M/slowest_sync_clk]
+  connect_bd_net -net mig_7series_0_ui_clk_sync_rst [get_bd_pins mig_7series_0/ui_clk_sync_rst] [get_bd_pins rst_mig_7series_0_125M/ext_reset_in]
+  connect_bd_net -net rst_clk_wiz_0_50M_peripheral_aresetn [get_bd_pins S01_ARESETN] [get_bd_pins axi_interconnect_ddr/S00_ARESETN] [get_bd_pins axi_interconnect_ddr/S01_ARESETN]
+  connect_bd_net -net rst_mig_7series_0_125M_interconnect_aresetn [get_bd_pins axi_interconnect_ddr/ARESETN] [get_bd_pins rst_mig_7series_0_125M/interconnect_aresetn]
+  connect_bd_net -net rst_mig_7series_0_125M_peripheral_aresetn [get_bd_pins axi_interconnect_ddr/M00_ARESETN] [get_bd_pins mig_7series_0/aresetn] [get_bd_pins rst_mig_7series_0_125M/peripheral_aresetn]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -827,6 +764,12 @@ proc create_root_design { parentCell } {
   set USR_CPLD_LED [ create_bd_port -dir O -from 0 -to 0 USR_CPLD_LED ]
   set USR_LED [ create_bd_port -dir O -from 9 -to 0 USR_LED ]
 
+  # Create instance: SCF1001_0, and set properties
+  set SCF1001_0 [ create_bd_cell -type ip -vlnv trenz.biz:user:SCF1001:1.0 SCF1001_0 ]
+
+  # Create instance: axi_iic_0, and set properties
+  set axi_iic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_iic:2.0 axi_iic_0 ]
+
   # Create instance: axi_quad_spi_0, and set properties
   set axi_quad_spi_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_quad_spi:3.2 axi_quad_spi_0 ]
   set_property -dict [ list \
@@ -839,11 +782,8 @@ proc create_root_design { parentCell } {
   # Create instance: axi_timer_0, and set properties
   set axi_timer_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_timer:2.0 axi_timer_0 ]
 
-  # Create instance: iic
-  create_hier_cell_iic [current_bd_instance .] iic
-
-  # Create instance: mb_sys
-  create_hier_cell_mb_sys [current_bd_instance .] mb_sys
+  # Create instance: ddr
+  create_hier_cell_ddr [current_bd_instance .] ddr
 
   # Create instance: microblaze_0_axi_periph, and set properties
   set microblaze_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_0_axi_periph ]
@@ -856,66 +796,66 @@ proc create_root_design { parentCell } {
   # Create instance: pcie
   create_hier_cell_pcie [current_bd_instance .] pcie
 
-  # Create instance: sd_ram
-  create_hier_cell_sd_ram [current_bd_instance .] sd_ram
+  # Create instance: sys_mb
+  create_hier_cell_sys_mb [current_bd_instance .] sys_mb
 
   # Create instance: vio
   create_hier_cell_vio [current_bd_instance .] vio
 
   # Create interface connections
-  connect_bd_intf_net -intf_net CLK_PCIe_100MHz_1 [get_bd_intf_ports CLK_PCIe_100MHz] [get_bd_intf_pins pcie/CLK_PCIe_100MHz]
-  connect_bd_intf_net -intf_net SI_FCLK_1 [get_bd_intf_ports SI_FCLK] [get_bd_intf_pins vio/SI_FCLK]
-  connect_bd_intf_net -intf_net SI_MGT115_0_1 [get_bd_intf_ports SI_MGT115_0] [get_bd_intf_pins vio/SI_MGT115_0]
+  connect_bd_intf_net -intf_net CLK_IN_D_1 [get_bd_intf_ports SI_FCLK] [get_bd_intf_pins vio/SI_FCLK]
+  connect_bd_intf_net -intf_net CLK_IN_D_1_1 [get_bd_intf_ports SI_MGT115_0] [get_bd_intf_pins vio/SI_MGT115_0]
+  connect_bd_intf_net -intf_net CLK_IN_D_2 [get_bd_intf_ports CLK_PCIe_100MHz] [get_bd_intf_pins pcie/CLK_PCIe_100MHz]
+  connect_bd_intf_net -intf_net SCF1001_0_SCF [get_bd_intf_ports SCF] [get_bd_intf_pins SCF1001_0/SCF]
+  connect_bd_intf_net -intf_net axi_iic_0_IIC [get_bd_intf_pins SCF1001_0/EMIO_I2C] [get_bd_intf_pins axi_iic_0/IIC]
+  connect_bd_intf_net -intf_net axi_pcie_0_pcie_7x_mgt [get_bd_intf_ports pcie_7x_mgt] [get_bd_intf_pins pcie/pcie_7x_mgt]
   connect_bd_intf_net -intf_net axi_quad_spi_0_SPI_0 [get_bd_intf_ports spi_rtl] [get_bd_intf_pins axi_quad_spi_0/SPI_0]
-  connect_bd_intf_net -intf_net iic_SCF [get_bd_intf_ports SCF] [get_bd_intf_pins iic/SCF]
-  connect_bd_intf_net -intf_net mb_sys_M_AXI_DC [get_bd_intf_pins mb_sys/M_AXI_DC] [get_bd_intf_pins sd_ram/S00_AXI]
-  connect_bd_intf_net -intf_net mb_sys_M_AXI_IC [get_bd_intf_pins mb_sys/M_AXI_IC] [get_bd_intf_pins sd_ram/S01_AXI]
-  connect_bd_intf_net -intf_net microblaze_0_axi_dp [get_bd_intf_pins mb_sys/M_AXI_DP] [get_bd_intf_pins microblaze_0_axi_periph/S00_AXI]
-  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M00_AXI [get_bd_intf_pins mb_sys/s_axi1] [get_bd_intf_pins microblaze_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M01_AXI [get_bd_intf_pins mb_sys/S_AXI] [get_bd_intf_pins microblaze_0_axi_periph/M01_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_M_AXI_DC [get_bd_intf_pins ddr/S00_AXI] [get_bd_intf_pins sys_mb/M_AXI_DC]
+  connect_bd_intf_net -intf_net microblaze_0_M_AXI_IC [get_bd_intf_pins ddr/S01_AXI] [get_bd_intf_pins sys_mb/M_AXI_IC]
+  connect_bd_intf_net -intf_net microblaze_0_axi_dp [get_bd_intf_pins microblaze_0_axi_periph/S00_AXI] [get_bd_intf_pins sys_mb/M_AXI_DP]
   connect_bd_intf_net -intf_net microblaze_0_axi_periph_M02_AXI [get_bd_intf_pins axi_timer_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_periph/M02_AXI]
   connect_bd_intf_net -intf_net microblaze_0_axi_periph_M03_AXI [get_bd_intf_pins axi_quad_spi_0/AXI_LITE] [get_bd_intf_pins microblaze_0_axi_periph/M03_AXI]
-  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M04_AXI [get_bd_intf_pins iic/S_AXI] [get_bd_intf_pins microblaze_0_axi_periph/M04_AXI]
-  connect_bd_intf_net -intf_net mig_7series_0_DDR3 [get_bd_intf_ports DDR3_SDRAM] [get_bd_intf_pins sd_ram/DDR3_SDRAM]
-  connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_ports CLK_DDR3_200MHz] [get_bd_intf_pins sd_ram/CLK_DDR3_200MHz]
-  connect_bd_intf_net -intf_net xdma_0_M_AXI [get_bd_intf_pins pcie/M_AXI] [get_bd_intf_pins sd_ram/S02_AXI1]
-  connect_bd_intf_net -intf_net xdma_0_M_AXI_LITE [get_bd_intf_pins microblaze_0_axi_periph/S01_AXI] [get_bd_intf_pins pcie/M_AXI_LITE]
-  connect_bd_intf_net -intf_net xdma_0_pcie_mgt [get_bd_intf_ports pcie_7x_mgt] [get_bd_intf_pins pcie/pcie_7x_mgt]
+  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M04_AXI [get_bd_intf_pins axi_iic_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_periph/M04_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_intc_axi [get_bd_intf_pins microblaze_0_axi_periph/M00_AXI] [get_bd_intf_pins sys_mb/s_axi]
+  connect_bd_intf_net -intf_net microblaze_0_mdm_axi [get_bd_intf_pins microblaze_0_axi_periph/M01_AXI] [get_bd_intf_pins sys_mb/S_AXI1]
+  connect_bd_intf_net -intf_net mig_7series_0_DDR3 [get_bd_intf_ports DDR3_SDRAM] [get_bd_intf_pins ddr/DDR3_SDRAM]
+  connect_bd_intf_net -intf_net pcie_M_AXI [get_bd_intf_pins ddr/S02_AXI1] [get_bd_intf_pins pcie/M_AXI]
+  connect_bd_intf_net -intf_net pcie_M_AXI_LITE [get_bd_intf_pins microblaze_0_axi_periph/S01_AXI] [get_bd_intf_pins pcie/M_AXI_LITE]
+  connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_ports CLK_DDR3_200MHz] [get_bd_intf_pins ddr/CLK_DDR3_200MHz]
 
   # Create port connections
-  connect_bd_net -net ARESETN_1 [get_bd_pins mb_sys/interconnect_aresetn] [get_bd_pins microblaze_0_axi_periph/ARESETN]
-  connect_bd_net -net PCI_PERSTN_1 [get_bd_ports PCI_PERSTN] [get_bd_pins pcie/PCI_PERSTN]
-  connect_bd_net -net axi_iic_0_iic2intc_irpt [get_bd_pins iic/iic2intc_irpt] [get_bd_pins mb_sys/In3]
-  connect_bd_net -net axi_pcie_0_axi_aclk_out [get_bd_pins microblaze_0_axi_periph/S01_ACLK] [get_bd_pins pcie/axi_aclk] [get_bd_pins sd_ram/S02_ACLK]
-  connect_bd_net -net axi_quad_spi_0_ip2intc_irpt [get_bd_pins axi_quad_spi_0/ip2intc_irpt] [get_bd_pins mb_sys/In2]
-  connect_bd_net -net axi_timer_0_interrupt [get_bd_pins axi_timer_0/interrupt] [get_bd_pins mb_sys/In1]
-  connect_bd_net -net microblaze_0_Clk [get_bd_pins axi_quad_spi_0/ext_spi_clk] [get_bd_pins axi_quad_spi_0/s_axi_aclk] [get_bd_pins axi_timer_0/s_axi_aclk] [get_bd_pins iic/s_axi_aclk] [get_bd_pins mb_sys/Clk] [get_bd_pins microblaze_0_axi_periph/ACLK] [get_bd_pins microblaze_0_axi_periph/M00_ACLK] [get_bd_pins microblaze_0_axi_periph/M01_ACLK] [get_bd_pins microblaze_0_axi_periph/M02_ACLK] [get_bd_pins microblaze_0_axi_periph/M03_ACLK] [get_bd_pins microblaze_0_axi_periph/M04_ACLK] [get_bd_pins microblaze_0_axi_periph/S00_ACLK] [get_bd_pins sd_ram/ui_addn_clk_0] [get_bd_pins vio/clk]
-  connect_bd_net -net mig_7series_0_init_calib_complete [get_bd_pins sd_ram/init_calib_complete] [get_bd_pins vio/probe_in6]
-  connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins mb_sys/dcm_locked] [get_bd_pins sd_ram/mmcm_locked] [get_bd_pins vio/probe_in5]
-  connect_bd_net -net probe_in7_1 [get_bd_pins pcie/user_lnk_up] [get_bd_pins vio/probe_in7]
-  connect_bd_net -net rst_clk_wiz_0_50M_peripheral_aresetn [get_bd_pins axi_quad_spi_0/s_axi_aresetn] [get_bd_pins axi_timer_0/s_axi_aresetn] [get_bd_pins iic/s_axi_aresetn] [get_bd_pins mb_sys/peripheral_aresetn] [get_bd_pins microblaze_0_axi_periph/M00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M01_ARESETN] [get_bd_pins microblaze_0_axi_periph/M02_ARESETN] [get_bd_pins microblaze_0_axi_periph/M03_ARESETN] [get_bd_pins microblaze_0_axi_periph/M04_ARESETN] [get_bd_pins microblaze_0_axi_periph/S00_ARESETN] [get_bd_pins sd_ram/S01_ARESETN]
+  connect_bd_net -net axi_iic_0_iic2intc_irpt [get_bd_pins axi_iic_0/iic2intc_irpt] [get_bd_pins sys_mb/In3]
+  connect_bd_net -net axi_pcie_0_axi_aclk_out [get_bd_pins ddr/S02_ACLK] [get_bd_pins microblaze_0_axi_periph/S01_ACLK] [get_bd_pins pcie/axi_aclk_out]
+  connect_bd_net -net axi_pcie_0_mmcm_lock [get_bd_pins pcie/mmcm_lock] [get_bd_pins vio/probe_in7]
+  connect_bd_net -net axi_quad_spi_0_ip2intc_irpt [get_bd_pins axi_quad_spi_0/ip2intc_irpt] [get_bd_pins sys_mb/In2]
+  connect_bd_net -net axi_timer_0_interrupt [get_bd_pins axi_timer_0/interrupt] [get_bd_pins sys_mb/In1]
+  connect_bd_net -net microblaze_0_Clk [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins axi_quad_spi_0/ext_spi_clk] [get_bd_pins axi_quad_spi_0/s_axi_aclk] [get_bd_pins axi_timer_0/s_axi_aclk] [get_bd_pins ddr/S00_ACLK] [get_bd_pins microblaze_0_axi_periph/ACLK] [get_bd_pins microblaze_0_axi_periph/M00_ACLK] [get_bd_pins microblaze_0_axi_periph/M01_ACLK] [get_bd_pins microblaze_0_axi_periph/M02_ACLK] [get_bd_pins microblaze_0_axi_periph/M03_ACLK] [get_bd_pins microblaze_0_axi_periph/M04_ACLK] [get_bd_pins microblaze_0_axi_periph/S00_ACLK] [get_bd_pins sys_mb/S_AXI_ACLK] [get_bd_pins vio/clk]
+  connect_bd_net -net mig_7series_0_init_calib_complete [get_bd_pins ddr/init_calib_complete] [get_bd_pins vio/probe_in6]
+  connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins ddr/dcm_locked] [get_bd_pins sys_mb/dcm_locked] [get_bd_pins vio/probe_in5]
+  connect_bd_net -net pcie_axi_aresetn [get_bd_pins ddr/S02_ARESETN1] [get_bd_pins microblaze_0_axi_periph/S01_ARESETN] [get_bd_pins pcie/axi_aresetn]
+  connect_bd_net -net reset_rtl_1 [get_bd_ports PCI_PERSTN] [get_bd_pins pcie/PCI_PERSTN]
+  connect_bd_net -net rst_clk_wiz_0_50M_interconnect_aresetn [get_bd_pins microblaze_0_axi_periph/ARESETN] [get_bd_pins sys_mb/interconnect_aresetn]
+  connect_bd_net -net rst_clk_wiz_0_50M_peripheral_aresetn [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins axi_quad_spi_0/s_axi_aresetn] [get_bd_pins axi_timer_0/s_axi_aresetn] [get_bd_pins ddr/S01_ARESETN] [get_bd_pins microblaze_0_axi_periph/M00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M01_ARESETN] [get_bd_pins microblaze_0_axi_periph/M02_ARESETN] [get_bd_pins microblaze_0_axi_periph/M03_ARESETN] [get_bd_pins microblaze_0_axi_periph/M04_ARESETN] [get_bd_pins microblaze_0_axi_periph/S00_ARESETN] [get_bd_pins sys_mb/peripheral_aresetn]
+  connect_bd_net -net sys_rst_n [get_bd_pins sys_mb/ext_reset_in] [get_bd_pins vio/probe_out0]
   connect_bd_net -net vio_USR_CPLD_LED [get_bd_ports USR_CPLD_LED] [get_bd_pins vio/USR_CPLD_LED]
   connect_bd_net -net vio_USR_LED [get_bd_ports USR_LED] [get_bd_pins vio/USR_LED]
-  connect_bd_net -net vio_probe_out0 [get_bd_pins mb_sys/ext_reset_in] [get_bd_pins vio/probe_out0]
-  connect_bd_net -net vio_probe_out2 [get_bd_pins pcie/ext_reset_in] [get_bd_pins vio/probe_out2]
-  connect_bd_net -net xdma_0_axi_aresetn [get_bd_pins microblaze_0_axi_periph/S01_ARESETN] [get_bd_pins pcie/axi_aresetn] [get_bd_pins sd_ram/S02_ARESETN1]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00010000 -offset 0x40800000 [get_bd_addr_spaces mb_sys/microblaze_0/Data] [get_bd_addr_segs iic/axi_iic_0/S_AXI/Reg] SEG_axi_iic_0_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x44A00000 [get_bd_addr_spaces mb_sys/microblaze_0/Data] [get_bd_addr_segs axi_quad_spi_0/AXI_LITE/Reg] SEG_axi_quad_spi_0_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x41C00000 [get_bd_addr_spaces mb_sys/microblaze_0/Data] [get_bd_addr_segs axi_timer_0/S_AXI/Reg] SEG_axi_timer_0_Reg
-  create_bd_addr_seg -range 0x00020000 -offset 0x00000000 [get_bd_addr_spaces mb_sys/microblaze_0/Data] [get_bd_addr_segs mb_sys/microblaze_0_local_memory/dlmb_bram_if_cntlr/SLMB/Mem] SEG_dlmb_bram_if_cntlr_Mem
-  create_bd_addr_seg -range 0x00020000 -offset 0x00000000 [get_bd_addr_spaces mb_sys/microblaze_0/Instruction] [get_bd_addr_segs mb_sys/microblaze_0_local_memory/ilmb_bram_if_cntlr/SLMB/Mem] SEG_ilmb_bram_if_cntlr_Mem
-  create_bd_addr_seg -range 0x00001000 -offset 0x41400000 [get_bd_addr_spaces mb_sys/microblaze_0/Data] [get_bd_addr_segs mb_sys/mdm_1/S_AXI/Reg] SEG_mdm_1_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces mb_sys/microblaze_0/Data] [get_bd_addr_segs mb_sys/microblaze_0_axi_intc/S_AXI/Reg] SEG_microblaze_0_axi_intc_Reg
-  create_bd_addr_seg -range 0x80000000 -offset 0x80000000 [get_bd_addr_spaces mb_sys/microblaze_0/Data] [get_bd_addr_segs sd_ram/mig_7series_0/memmap/memaddr] SEG_mig_7series_0_memaddr
-  create_bd_addr_seg -range 0x80000000 -offset 0x80000000 [get_bd_addr_spaces mb_sys/microblaze_0/Instruction] [get_bd_addr_segs sd_ram/mig_7series_0/memmap/memaddr] SEG_mig_7series_0_memaddr
-  create_bd_addr_seg -range 0x00010000 -offset 0x40800000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs iic/axi_iic_0/S_AXI/Reg] SEG_axi_iic_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x40800000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs axi_iic_0/S_AXI/Reg] SEG_axi_iic_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x44A00000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs axi_quad_spi_0/AXI_LITE/Reg] SEG_axi_quad_spi_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41C00000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs axi_timer_0/S_AXI/Reg] SEG_axi_timer_0_Reg
-  create_bd_addr_seg -range 0x00001000 -offset 0x41400000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs mb_sys/mdm_1/S_AXI/Reg] SEG_mdm_1_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs mb_sys/microblaze_0_axi_intc/S_AXI/Reg] SEG_microblaze_0_axi_intc_Reg
-  create_bd_addr_seg -range 0x80000000 -offset 0x80000000 [get_bd_addr_spaces pcie/xdma_0/M_AXI] [get_bd_addr_segs sd_ram/mig_7series_0/memmap/memaddr] SEG_mig_7series_0_memaddr
+  create_bd_addr_seg -range 0x00001000 -offset 0x41400000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs sys_mb/mdm_1/S_AXI/Reg] SEG_mdm_1_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces pcie/xdma_0/M_AXI_LITE] [get_bd_addr_segs sys_mb/microblaze_0_axi_intc/S_AXI/Reg] SEG_microblaze_0_axi_intc_Reg
+  create_bd_addr_seg -range 0x80000000 -offset 0x80000000 [get_bd_addr_spaces pcie/xdma_0/M_AXI] [get_bd_addr_segs ddr/mig_7series_0/memmap/memaddr] SEG_mig_7series_0_memaddr
+  create_bd_addr_seg -range 0x00010000 -offset 0x40800000 [get_bd_addr_spaces sys_mb/microblaze_0/Data] [get_bd_addr_segs axi_iic_0/S_AXI/Reg] SEG_axi_iic_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x44A00000 [get_bd_addr_spaces sys_mb/microblaze_0/Data] [get_bd_addr_segs axi_quad_spi_0/AXI_LITE/Reg] SEG_axi_quad_spi_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41C00000 [get_bd_addr_spaces sys_mb/microblaze_0/Data] [get_bd_addr_segs axi_timer_0/S_AXI/Reg] SEG_axi_timer_0_Reg
+  create_bd_addr_seg -range 0x00020000 -offset 0x00000000 [get_bd_addr_spaces sys_mb/microblaze_0/Data] [get_bd_addr_segs sys_mb/microblaze_0_local_memory/dlmb_bram_if_cntlr/SLMB/Mem] SEG_dlmb_bram_if_cntlr_Mem
+  create_bd_addr_seg -range 0x00020000 -offset 0x00000000 [get_bd_addr_spaces sys_mb/microblaze_0/Instruction] [get_bd_addr_segs sys_mb/microblaze_0_local_memory/ilmb_bram_if_cntlr/SLMB/Mem] SEG_ilmb_bram_if_cntlr_Mem
+  create_bd_addr_seg -range 0x00001000 -offset 0x41400000 [get_bd_addr_spaces sys_mb/microblaze_0/Data] [get_bd_addr_segs sys_mb/mdm_1/S_AXI/Reg] SEG_mdm_1_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces sys_mb/microblaze_0/Data] [get_bd_addr_segs sys_mb/microblaze_0_axi_intc/S_AXI/Reg] SEG_microblaze_0_axi_intc_Reg
+  create_bd_addr_seg -range 0x80000000 -offset 0x80000000 [get_bd_addr_spaces sys_mb/microblaze_0/Data] [get_bd_addr_segs ddr/mig_7series_0/memmap/memaddr] SEG_mig_7series_0_memaddr
+  create_bd_addr_seg -range 0x80000000 -offset 0x80000000 [get_bd_addr_spaces sys_mb/microblaze_0/Instruction] [get_bd_addr_segs ddr/mig_7series_0/memmap/memaddr] SEG_mig_7series_0_memaddr
 
 
   # Restore current instance
